@@ -1,0 +1,148 @@
+workflow_id: "us-unitary-scroll-compressor"
+name: "US Residential Unitary Scroll Compressor Strategy"
+version: "0.3.0"
+mode: "deep-research-template"
+default_topic_file: "./topic.yaml"
+output_language: "ko"
+research_depth: "deep"
+
+orchestration:
+  sequence:
+    - id: "intake"
+      description: "Normalize topic, scope, competitors, technology axes, sources, and deliverables."
+    - id: "agent_briefs"
+      description: "Run eight sub agents. Agents may run in parallel. Each agent must produce a deep research brief, not a short summary."
+    - id: "evidence_review"
+      description: "Classify source strength and mark facts, inferences, assumptions, and open questions."
+    - id: "synthesis"
+      description: "Create two synthesis layers: executive summary for decisions and full summary for deep technical/strategic review."
+    - id: "deliverables"
+      description: "Generate executive summary, full summary report, executive slide outline, source register, and monitoring plan."
+
+mcp_tools:
+  tavily:
+    use_for:
+      - "Broad discovery"
+      - "Recent source discovery"
+      - "Official domain searches"
+      - "Competitor and regulatory searches"
+  firecrawl:
+    use_for:
+      - "Specific URL extraction"
+      - "Structured extraction from product pages"
+      - "Long page and document parsing"
+  web:
+    use_for:
+      - "Verification"
+      - "Recent fact checks"
+      - "Official source confirmation"
+
+agents:
+  - id: "01-market-oem"
+    name: "Market & OEM Agent"
+    prompt: "./agents/01-market-oem.md"
+  - id: "02-core-competitors"
+    name: "Core Competitor Agent"
+    prompt: "./agents/02-core-competitors.md"
+  - id: "03-efficiency"
+    name: "Efficiency Agent"
+    prompt: "./agents/03-efficiency.md"
+  - id: "04-inverter-control"
+    name: "Inverter & Control Agent"
+    prompt: "./agents/04-inverter-control.md"
+  - id: "05-noise-nvh"
+    name: "Noise & NVH Agent"
+    prompt: "./agents/05-noise-nvh.md"
+  - id: "06-refrigerant-regulation"
+    name: "Refrigerant & Regulation Agent"
+    prompt: "./agents/06-refrigerant-regulation.md"
+  - id: "07-cold-climate-reliability"
+    name: "Cold Climate & Reliability Agent"
+    prompt: "./agents/07-cold-climate-reliability.md"
+  - id: "08-patent-research"
+    name: "Patent & Research Agent"
+    prompt: "./agents/08-patent-research.md"
+
+agent_output_schema: "../../schemas/agent-output.schema.json"
+
+agent_depth_requirements:
+  minimum_key_findings: 12
+  minimum_sources: 12
+  minimum_search_queries: 10
+  minimum_comparison_rows: 8
+  minimum_samsung_implications: 6
+  minimum_gap_items: 5
+  minimum_actions: 5
+  required_sections:
+    - "Executive mini-summary"
+    - "Research questions and scope"
+    - "Search log and source coverage map"
+    - "Detailed findings"
+    - "Competitive or technical comparison table"
+    - "Technology mechanism / market logic"
+    - "Evidence register"
+    - "Samsung implications"
+    - "Gap analysis"
+    - "Catch-up actions"
+    - "Differentiation options"
+    - "Risks and uncertainties"
+    - "Follow-up research plan"
+  evidence_rules:
+    - "Separate facts, inferences, and assumptions."
+    - "Use official, regulatory, patent, and technical sources before secondary sources."
+    - "For each important claim, include source name, source type, date when available, and why it matters."
+    - "Triangulate important conclusions across at least two source types where possible."
+    - "Document contradictory or weak evidence instead of smoothing it away."
+    - "When public data is missing, state the missing data explicitly and propose how to verify it."
+    - "Do not compress analysis into only bullet summaries."
+    - "Each finding must explain evidence, interpretation, Samsung relevance, confidence, and next verification step."
+
+synthesis:
+  required_outputs:
+    - "Executive summary"
+    - "Full summary"
+    - "Market and OEM context"
+    - "Competitor positioning"
+    - "Technology trend analysis"
+    - "Samsung positioning comparison"
+    - "Gap analysis"
+    - "Catch-up strategy"
+    - "Differentiation strategy"
+    - "12-36 month roadmap"
+    - "Monitoring plan"
+  executive_summary:
+    purpose: "Decision-ready summary for executives."
+    length: "1-2 pages equivalent."
+    must_include:
+      - "Top 5 strategic conclusions."
+      - "Top 5 gaps."
+      - "Top 5 recommended actions."
+      - "Strategy scorecard highlights."
+      - "Known uncertainties that affect decisions."
+  full_summary:
+    purpose: "Deep synthesis preserving agent-level detail."
+    length: "Long-form technical and strategic report."
+    must_include:
+      - "Agent-by-agent synthesized findings."
+      - "Evidence traceability from recommendation to source."
+      - "Competitor-by-competitor positioning."
+      - "Technology-axis mechanism explanations."
+      - "Gap root-cause analysis."
+      - "Catch-up, differentiation, and monitoring operating plan."
+      - "Appendices with source register, assumptions, and unresolved questions."
+  synthesis_depth:
+    - "Preserve agent-level nuance in appendices."
+    - "Do not collapse contradictory evidence into a single conclusion."
+    - "Create a concise executive summary plus a full deep summary."
+    - "Include traceability from strategic recommendation back to agent/source evidence."
+    - "Separate what is known, inferred, assumed, and still unknown."
+
+monitoring:
+  default_cadence: "quarterly"
+  watch_items:
+    - "Competitor product launches"
+    - "OEM refrigerant transition announcements"
+    - "DOE / EPA / ENERGY STAR / AHRI updates"
+    - "New patents from core competitors"
+    - "New papers and conference abstracts"
+    - "Cold climate heat pump claims"

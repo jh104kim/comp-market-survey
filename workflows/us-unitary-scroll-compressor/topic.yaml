@@ -1,0 +1,54 @@
+topic: "미국 가정용 unitary 시장의 Scroll 압축기의 대응 방안"
+company_context: "Samsung"
+market:
+  region: "United States"
+  segment:
+    - "Residential ducted split AC"
+    - "Residential ducted split heat pump"
+    - "Cold climate heat pump"
+technology_axes:
+  - "Efficiency"
+  - "Inverter / variable speed"
+  - "Noise / NVH"
+  - "Refrigerant"
+  - "Operating environment"
+  - "Cold climate reliability"
+competitors:
+  core:
+    - "LG"
+    - "GMCC"
+    - "Copeland"
+    - "Donper"
+  market_context:
+    - "Carrier"
+    - "Trane"
+    - "Lennox"
+    - "Daikin / Goodman"
+    - "Rheem"
+    - "Johnson Controls / York"
+    - "Midea"
+period:
+  primary: "2021-present"
+  patent_trend: "2016-present when useful"
+sources:
+  - "Public web"
+  - "Official product pages"
+  - "Product catalogs"
+  - "DOE / EPA / ENERGY STAR / AHRI"
+  - "Patents"
+  - "Papers / conference abstracts"
+deliverables:
+  - "Executive summary"
+  - "Full summary"
+  - "Detailed report"
+  - "Executive slide outline"
+  - "Deep agent evidence briefs"
+  - "Strategy scorecard"
+  - "Monitoring update template"
+evaluation:
+  - "Technical feasibility"
+  - "Market response speed"
+  - "Differentiation potential"
+  - "Regulatory / refrigerant fit"
+  - "Cost and supply chain risk"
+  - "Samsung execution difficulty"
